@@ -60,7 +60,7 @@ Study/
 ├── 📄 LICENSE
 ├── 📄 README.md
 └── 📄 SECURITY.md
-
+```
 ---
 
 ## 📜 License
