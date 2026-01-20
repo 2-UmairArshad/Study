@@ -1,0 +1,601 @@
+1.  cin >> var (char);  --->  only takes characters or numbers as input without considering space, tab as input.
+2.  getline(cin,var (string)); ---> is used to take string as input. 
+3.  cin.get(var (char)); --->  is used to get input from user however it also considers WHITESPACE,SPACE and TAB as input. 
+    It only takes char data type as input .
+4.  An unsigned int variable can also be defined using only the word unsigned. For example, the following variable definitions are equivalent.
+
+        unsigned int days;
+        unsigned days;
+    
+5.  C++ allows you to force an integer literal to be stored as a long integer by placing the letter L at the end of the number. Here is an 
+    example:
+
+        32L
+    
+    On a computer that uses 2-byte integers and 4-byte long integers, this literal will use 4 bytes. This is called a long integer literal.
+    You can use either an uppercase or lowercase L. 
+
+6.  In case you need to force a literal to be stored as a float, you can append the letter F or f to the end of it. For example, the
+    following literals would be stored as floats:
+
+        1.2F
+        45.907f    
+   
+7.  C++ assumes that all integer literals are expressed in decimal. You express hexadecimal numbers by placing 0x in front of them. 
+    (This is zero-x, not oh-x.) Here is how the hexadecimal number F4 would be expressed in C++:
+
+        0xF4
+        cout << 0xF4;                           // 244
+
+8.  Octal numbers must be preceded by a 0 (zero, not oh). For example, the octal 31 would be written
+
+        031        
+        cout << 031;                           // 25
+
+---------------------------------------------------------- pow(base,exp); -------------------------------------------------------------
+
+1.  There are some guidelines that should be followed when the pow function is used. First, the program must include the cmath header file.
+    Second, the arguments that you pass to the pow function should be doubles. Third, the variable used to store pow’s return value should 
+    be defined as a double. For example, in the following statement the variable area should be a double:
+
+        area = pow(4.0, 2.0);
+
+
+                                            <OUTPUT FORMATTING>
+
+---------------------------------------------- setw(SIZE) -------------------------------------------------------------------------------                                            
+
+1.  A stream manipulator, setw, can be used to establish print fields of a specified width. Here is an example of how it is used:
+
+        value = 23;
+        cout << setw(5) << value;
+    
+    Since 23 only occupies 2 positions on the screen, 3 blank spaces will be printed before it.
+
+        ( 23)
+    
+2.      value = 18397;
+        cout << setw(2) << value;
+
+    In cases like this, cout will print the entire number.
+
+3.  • The field width of a floating-point number includes a position for the decimal point.
+    • The field width of a string includes all characters in the string, including spaces.
+    • The values printed in the field are right-justified by default. This means they are aligned with the right side of the print field, 
+      and any blanks that must be used to pad it are inserted in front of the value.
+
+---------------------------------------------- setprecision(n) ---------------------------------------------------------------------------
+
+1. You can control the number of significant digits with which floating-point values are displayed by using the <setprecision>
+   manipulator.
+
+
+    double quotient, number1 = 132.364, number2 = 26.91;
+
+    quotient = number1 / number2;
+        cout << quotient << endl;                      ---> 4.91877
+        cout << setprecision(5) << quotient << endl;   ---> 4.9188
+        cout << setprecision(4) << quotient << endl;   ---> 4.919
+        cout << setprecision(3) << quotient << endl;   ---> 4.92
+        cout << setprecision(2) << quotient << endl;   ---> 4.9
+        cout << setprecision(1) << quotient << endl;   ---> 5
+        
+2. If the value of a number is expressed in fewer digits of precision than specified by setprecision, the manipulator will have no effect.
+   In the following statements, the value of dollars only has four digits of precision, so the number printed by both cout statements is 24.51.
+
+    double dollars = 24.51;
+        cout << dollars << endl;                    ---> 24.51
+        cout << setprecision(5) << dollars << endl; ---> 24.51
+
+---------------------------------------------- fixed ---------------------------------------------------------------------------
+
+1. Another stream manipulator, fixed, forces cout to print the digits in fixed-point notation, or decimal. 
+2. When the fixed manipulator is used, all floating point numbers that are subsequently printed will be displayed in fixed point
+   notation, with the number of digits to the right of the decimal point specified by the setprecision manipulator.
+
+    cout << "Enter the sales for day 1: "; 
+    cin >> day1;                            <--- 1321.87 [Enter]
+    cout << "Enter the sales for day 2: ";
+    cin >> day2;                            <--- 1869.26 [Enter]
+    cout << "Enter the sales for day 3: ";
+    cin >> day3;                            <--- 1403.77 [Enter]
+
+    cout << setprecision(2) << fixed;
+    cout << "Day 1: " << setw(8) << day1 << endl;  ---> 1321.87
+    cout << "Day 2: " << setw(8) << day2 << endl;  ---> 1869.26
+    cout << "Day 3: " << setw(8) << day3 << endl;  ---> 1403.77
+    cout << "Total: " << setw(8) << total << endl; ---> 4594.9 (actual) ---> 4594.90 (formatted)                   
+
+3. When the fixed and setprecision manipulators are used together, the value specified by the setprecision manipulator will be 
+   the number of digits to appear after the decimal point, not the number of significant digits. For example, look at the following code.
+
+    double x = 123.4567;
+        cout << setprecision(2) << fixed << x << endl; ---> 123.45
+
+---------------------------------------------- showpoint ---------------------------------------------------------------------------
+ 
+1. If we want the numbers padded with trailing zeroes, we must use the <showpoint> manipulator as shown in the following code.
+
+    double x = 123.4, y = 456.0;
+        cout << setprecision(6) << showpoint << x << endl; ---> 123.400
+        cout << y << endl;                                 ---> 456.000
+
+** With most compilers, trailing zeroes are displayed when the <setprecision> and <fixed> manipulators are used together
+
+---------------------------------------------- left ---------------------------------------------------------------------------
+
+1. Normally output is right justified. For example, look at the following code.
+
+    double x = 146.789, y = 24.2, z = 1.783;
+        cout << setw(10) << x << endl; --->     ----146.789
+        cout << setw(10) << y << endl; --->     -------24.2
+        cout << setw(10) << z << endl; --->     ------1.783
+    
+2. You can cause the values to be left-justified by using the left manipulator.
+
+    double x = 146.789, y = 24.2, z = 1.783;
+        cout << left << setw(10) << x << endl; --->  146.789----
+        cout << setw(10) << y << endl;         --->  24.2-------
+        cout << setw(10) << z << endl;         --->  1.783------
+
+
+
+                                              <INPUT FORMATTING>
+
+-------------------------------------------------- setw(SIZE) ---------------------------------------------------------------------------                                                        
+
+1. The cin object has formatting tools similar to those of cout. For instance, an input field width may be set with the setw manipulator.
+   This is most helpful when cin is reading a string and storing it in a character array. You may recall that cin has no way of knowing
+   how large the array is. If the user types more characters than the array will hold, <cin> will store the string in the array anyway, 
+   overwriting whatever is in memory next to the array. This type of error is known as a buffer overrun.
+
+   char word[10];
+        cin >> setw(10) >> word;
+
+... The field width specified is 10. cin will read one character less than this, leaving room for
+    the null character at the end.
+
+     const int SIZE = 5;
+        char name [SIZE];
+        cout << "enter: ";
+        cin >> setw(4) >> name; ---> SAAD
+        cout << name;           ---> SAA
+
+-------------------------------------------------- cin.getline(var,SIZE) --------------------------------------------------------------------                                                        
+
+1. cin stops reading input when it encounters a whitespace character. Whitespace characters include the [Enter] key, space, and tab.
+2. cin provides a member function to read a string containing spaces. The function is called getline, and its purpose is to read an 
+   entire “line” of text, until the [Enter] key is pressed.
+
+    cin.getline(sentence, 20);
+
+3. The first argument is the name of the array that the string is to be stored in. The second argument is the size of the array. 
+   cin will read up to one character less than this number, leaving room for the null terminator. This eliminates the need for 
+   using the setw manipulator.
+
+    const int SIZE = 12/15;
+    char name [SIZE];
+        cout << "enter: ";      ---> MUHAMMAD SAAD
+        cin.getline(name,SIZE);
+        cout << name;           ---> MUHAMMAD SA / MUHAMMAD SAAD
+
+-------------------------------------------------- cin.get(ch); --------------------------------------------------------------------                                                        
+
+1. A limiting characteristic of the >> operator with char variables is that it requires a character to be entered and it ignores 
+   all leading whitespace characters.This means the program will not continue past the cin statement until some character other 
+   than the spacebar, the tab key, or the [Enter] key has been pressed. The get function reads a single character including any 
+   whitespace character. Here is an example:
+
+    char ch; 
+        cout << "Type a character and press Enter: ";
+        cin.get(ch); 
+        cout << "You entered " << ch << endl;
+
+.. If the user types the character A and presses Enter, the cin.get function will store the character ‘A’ in the variable ch. 
+   If the user simply presses the Enter key, the cin.get function will store the newline character (‘\n’) in the variable ch.
+2. The only difference between the get function and the >> operator is that get reads the first character typed, even if it is 
+   a space, tab, or the [Enter] key.
+
+-------------------------------------------------- cin.ignore(); --------------------------------------------------------------------   
+
+    char ch;
+    int number;
+        cout << "Enter a number: ";
+        cin >> number; 
+        cin.ignore(); 
+        cout << "Enter a character: ";
+        cin.get(ch); 
+        cout << "Thank You!" << endl;
+    
+    ** execute the code with <cin.ignore> and without <cin.ignore> to see what is its functionality.
+
+-------------------------------------------------- fmod(num,denom); -------------------------------------------------------------------  
+
+1. Returns, as a double, the remainder of the division of the second argument with first argument. Works like the modulus operator, but
+   the arguments are doubles. (The modulus operator only works with integers.) Take care not to pass zero as the second argument. Doing
+   so would cause division by zero.
+
+   double num = 10.5, denom = 2.2;
+   double y = fmod(num,denom);
+        cout << y;
+
+-------------------------------------------------- exp(x); -------------------------------------------------------------------  
+
+1. Computes the exponential function of the argument, which is x. The return type and the argument are doubles.
+
+    
+    double y, x = 3.2;
+    y = exp(x);           //  e^x (exponential)
+        cout << y;
+
+---------------------------------------------- RELATIONAL OPERATORS ------------------------------------------------------------
+
+
+1.  All the relational operators have left-to-right associativity.
+2.  Relational expressions have a higher precedence than the assignment operator. In the statement
+
+        z = x < y;
+
+    the expression x < y is evaluated first, and then its value is assigned to z.
+
+3.  If you inadvertently put a semicolon after the if part, the compiler will assume you are placing a null statement there. 
+    The null statement is an empty statement that does nothing. This will prematurely terminate the if statement, which 
+    disconnects it from the statement that follows it. The statement following the if will always execute.
+4.  Because of the way that floating-point numbers are stored in memory, rounding errors sometimes occur. This is because 
+    some fractional numbers cannot be exactly represented using binary. So, you should be careful when using the equality 
+    operator (==) to compare floating point numbers.
+
+        double a, b;
+        a = b = 1.5;
+
+        a = a + 0.0000000000000001;
+
+        if (a == b)
+            {
+                cout << "Good";                 // Output: Good
+            }
+        else
+            {
+                cout << "Bad";
+            }
+
+    To prevent round-off errors from causing this type of problem, you should stick with greater-than and less-than comparisons 
+    with floating-point numbers.
+
+------------------------------------------------ COMPARING STRINGS -----------------------------------------------------------------
+
+1.  The relational operators (&&, ||, !) can be used to compare numbers, but not C-strings. When you use the name of an array or a 
+    string literal, you are actually working with the memory address of the array or literal. The following statement is comparing
+    the memory addresses of firstString and secondString:
+
+        if (firstString == secondString)
+    
+2.  In C++, C-string comparisons are done with the library function strcmp. To use the strcmp function, you must include the <cstring>
+    header file. Here is the function’s general format:
+
+        strcmp(string1, string2);
+
+    The function compares the contents of string1 with the contents of string2 and returns one of the following values:
+        • If the two strings are identical, strcmp returns 0.
+        • If string1 < string2, strcmp returns a negative number.
+        • If string1 > string2, strcmp returns a positive number 
+
+3.  In general, strcmp compares the ASCII codes of each character in the two strings. If it goes all the way through both strings finding
+    no characters different, it returns 0. As soon as it finds two corresponding characters that have different codes, however, it stops the
+    comparison. If the ASCII code for the character in string2 is higher than the code in string1, it returns a negative number. But, if the
+    code in string2 is lower than the code in string1, a positive number is returned.
+
+*** TIP: It might help you to think of strcmp as using inverted logic: If the two strings are equal, strcmp returns false (zero). If the two
+    strings are not equal, strcmp returns true (a nonzero value).
+*** The function strcmp is case-sensitive when it compares the two strings. If the user enters “Dog” and “dog”, it will report they are not
+    the same.
+*** The two following statements perform the same operation:
+
+        if (strcmp(firstString, secondString) == 0)
+        if (!strcmp(firstString, secondString))
+
+------------------------------------------------------ SENTINELS --------------------------------------------------------------------
+
+1.  A sentinel is a special value that marks the end of a list of values.
+2.  A sentinel is a special value that cannot be mistaken as a member of the list and signals that there are no more values to be entered.
+    When the user enters the sentinel, the loop terminates.
+
+        while (points != -1)
+            {
+                total += points;
+                game++;
+                cout << "Enter the points for game " << game << ": ";
+                cin >> points;
+            }
+  **The loop will continue to run as long as -1 is entered by the user. Here -1 is the sentinel value that terminates the loop.
+
+----------------------------------------------- READING A FILE USING LOOP ----------------------------------------------------------
+
+1.  When reading a value from a file with the stream extraction operator, the operator returns a true or false value indicating 
+    whether the value was successfully read. This return value can be used to detect when the end of a file has been reached.
+    Following program uses a loop to read the five numbers and display them on the screen.
+
+        ifstream inputFile;
+        int number; 
+        int count = 1;
+        inputFile.open("numbers.txt");
+        if (!inputFile)
+            cout << "Error opening file.\n";
+        else
+            {
+                while (count <= 5)
+                    {
+                        inputFile >> number;
+                        cout << number << endl;
+                        count++;
+                    }
+                inputFile.close();
+            }
+
+2.  The stream extraction operator (>>) not only reads data from a file, but it also returns a value indicating whether the data was 
+    successfully read or not. If the operator returns true, then a value was successfully read. If the operator returns false, it
+    means that novalue was read from the file.
+
+        if (inputFile >> number)
+            {
+                // Data was successfully read from the file.
+                cout << "The data read from the file is " << number << endl;
+            }
+        else
+            {
+                // No data was read from the file.
+                cout << "Could not read an item from the file.\n";
+            }        
+    
+3.  The statement that reads an item from the file is also used as the conditional expression in the if statement:
+
+        if (inputFile >> number)
+        
+    This statement does two things:
+        1. It uses the expression inputFile >> number to read an item from the file and stores the item in the number variable. 
+        The >> operator returns true if the item was successfully read, or false otherwise.
+        2. It tests the value returned by the stream extraction operator.
+
+4.  You can use the stream extraction operator’s return value in a loop to determine when the end of the file has been reached. 
+    Here is an example:
+
+        while (inputFile >> number)
+            {
+                cout << number << endl;
+            }
+
+    Because the value returned from the >> operator controls the loop, it will read items from the file until the end of the file has been reached.
+
+--------------------------------------------------------- cout.fill(''); ------------------------------------------------------------
+
+1.  The fill member function of cout changes the fill character, which is a space by default. In the program segment above, the fill 
+    function causes a zero to be printed in front of all single digit numbers.
+
+        cout << fixed << right;
+        cout.fill('0');
+        int n = 4;
+        cout << setw(2) << n;
+
+-------------------------------------------------------- continue; ------------------------------------------------------------        
+
+1.  The continue statement causes a loop to stop its current iteration and begin the next one.
+2.  The continue statement causes the current iteration of a loop to end immediately. When continue is encountered, all the statements
+    in the body of the loop that appear after it are ignored, and the loop prepares for the next iteration.
+
+        int testVal = 0;
+        while (testVal++ < 10)
+            {
+                if (testVal == 4)
+                continue;
+                cout << testVal << " ";      // 1 2 3 5 6 7 8 9 10
+            }            
+
+
+
+
+--------------------------------------------------------- ARRAYS --------------------------------------------------------------------
+
+1.  An array allows you to store and work with multiple values of the same data type. The values are stored together in consecutive
+    memory locations
+
+        int days[6];
+
+    The number inside the brackets is the array’s size declarator. It indicates the number of elements, or values, the array can hold.
+    An array’s size declarator must be a constant integer expression with a value greater than zero. It can be either a literal, as in 
+    the previous example, or a named constant, as shown in the following:
+
+        const int NUM_DAYS = 6;
+        int days[NUM_DAYS]; 
+
+2.  Arrays of any data type can be defined. The following are all valid array definitions:
+
+        float temperatures[100]; ---> Array of 100 floats
+        char name[41];           ---> Array of 41 characters
+        long units[50];          ---> Array of 50 long integers
+        double sizes[1200];      ---> Array of 1200 doubles
+
+3.  The individual elements of an array are assigned unique subscripts. These subscripts are used to access the elements.
+
+        short hours[6];
+
+    A subscript is used as an index to pinpoint a specific element within an array. The first element is assigned the subscript 0, the second 
+    element is assigned 1, and so forth. The six elements in the array <hours> would have the subscripts 0 through 5.
+
+*** Subscript numbering in C++ always starts at zero. The subscript of the last element in an array is one less than the total number of 
+    elements in the array. This means that in the array short hours[6], the element hours[6] does not exist. hours[5] is the last element 
+    in the array.
+*** Understand the difference between the array size declarator and a subscript. The number inside the brackets of an array definition is
+    the size declarator. The number inside the brackets of an assignment statement or any statement that works with the contents of an array is a 
+    subscript.
+
+4.  Even though the size declarator of an array definition must be a constant or a literal, subscript numbers can be stored in variables. 
+    This makes it possible to use a loop to “cycle through” an entire array, performing the same operation on each element. For example,
+    look at the following code:
+
+        const int ARRAY_SIZE = 5;
+        int numbers[ARRAY_SIZE];
+        for (int count = 0; count < ARRAY_SIZE; count++)
+            numbers[count] = 99;
+
+--------------------------------------------------------- ARRAY BOUNDARY --------------------------------------------------------------------
+
+1.  You should always input in an array according to the size of the array you declared. If you try to input and then access the undeclared 
+    indexes of an array, the program will crash or will store garbage values in the undeclared indexes.
+
+        int num[3];
+        for (int i=0; i<5; i++)
+            {
+                num[i] = 100;
+            }
+        for (int i=0; i<5; i++)
+            {
+                cout << num[i] << endl;
+            }
+
+--------------------------------------------------------- PARTIAL ARRAY INITIALIZATION ---------------------------------------------------------
+
+1.  When an array is being initialized, C++ does not require a value for every element. It’s possible to only initialize part of an array, 
+    such as:
+
+        int numbers[7] = {1, 2, 4, 8};
+
+    This definition initializes only the first four elements of a seven-element array. It’s important to note that if an array is partially 
+    initialized, the uninitialized elements will be set to zero. This is true even if the array is defined locally. (If a local array is completely
+    uninitialized, its elements will contain “garbage,” like all other local variables.)
+2.  If you leave an element uninitialized, you must leave all the elements that follow it uninitialized as well. C++ does not provide a way to skip 
+    elements in the initialization list. For example, the following is not legal:
+
+        int array[6] = {2, 4, , 8, , 12};   
+        
+3.  It’s possible to define an array without specifying its size, as long as you provide an initialization list. This process is konown as Implicit 
+    Array Sizing. C++ automatically makes the array large enough to hold all the initialization values. For example, the following definition 
+    creates an array with five elements:
+
+        double ratings[] = {1.0, 1.5, 2.0, 2.5, 3.0};
+
+4.  When initializing a character array with a string, simply enclose the string in quotation marks, as shown here:
+
+        char name[7] = "Warren";
+
+    Although there are six characters in the string “Warren,” the array must have enough elements to also accommodate the null terminator at the end 
+    of the string. It’s important to note that anytime a string literal is used in C++, the null terminator is automatically included. That’s why name
+    is defined above with seven elements.
+
+5.  The null terminator is not automatically included when an array is initialized with individual characters. It must be included in the 
+    initialization list, as shown below:
+
+        char name[7] = {'W', 'a', 'r', 'r', 'e', 'n', '\0'};
+
+--------------------------------------------------------- PROCESSING ARRAY CONTENTS -------------------------------------------------------------
+
+1.  Processing array elements is no different than processing other variables. For example, the following statement multiplies hours[3] by the 
+    variable rate:
+
+        pay = hours[3] * rate;
+
+    And the following are examples of pre-increment and post-increment operations on array elements:
+
+        int score[5] = {7, 8, 9, 10, 11};
+        ++score[2];                           // Pre-increment operation on the value in score[2]
+        score[4]++;                          // Post-increment operation on the value in score[4]
+
+2.  Array elements may also be used in relational expressions. For example, the following if statement tests cost[20] to determine whether it is 
+    less than cost[0]:
+
+        if (cost[20] < cost[0])
+
+    And the following statement sets up a while loop to iterate as long as value[place] does not equal 0:
+
+        while (value[place] != 0)
+
+--------------------------------------------------------- ASSIGNING ONE ARRAY TO OTHER -------------------------------------------------------------
+
+1.  The following code defines two integer arrays: newValues and oldValues. newValues is uninitialized and oldValues is initialized with 10, 100, 
+    200, and 300:
+
+        const int SIZE = 4;
+        int oldValues[SIZE] = {10, 100, 200, 300};
+        int newValues[SIZE];
+
+    The following way os assigning an array with the other is wrong:
+
+        newValues = oldValues;                                          // Wrong!
+
+    The only way to assign one array to another is to assign the individual elements in the arrays. Usually, this is best done with a loop, such as:
+
+        for (int count = 0; count < SIZE; count++)
+        newValues[count] = oldValues[count];
+
+    The reason the assignment operator will not work with an entire array at once is complex, but important to understand. Anytime the name of an 
+    array is used without brackets and a subscript, it is seen as the array’s beginning memory address. Because the name of an array without the 
+    brackets and subscript stands for the array’s starting memory address, the following statement
+
+        newValues = oldValues;
+
+    is interpreted by C++ as
+
+        8012 = 8024;                                                    // Beginning memory addresses of both arrays
+
+    The statement will not work because you cannot change the starting memory address of an array.
+
+2.  Suppose we have the following array definition:
+
+        const int SIZE = 5;
+        int array[SIZE] = {10, 20, 30, 40, 50};
+
+    You now know that an array’s name is seen as the array’s beginning memory address. This explains why the following statement cannot be used to 
+    display the contents of array:
+
+        cout << array << endl;                                          //Wrong!
+
+    When this statement executes, cout will display the array’s memory address, not the array’s contents. You must use a loop to display the contents 
+    of each of the array’s elements.
+
+3.  The only exception to this rule of using array name with subscript instead of only array name to locate its contents is when you are displaying 
+    the contents of a char array that contains a C-string. For example, assume a program has the following code segment:
+
+        char name[] = "Ruth";
+        cout << name << endl;
+
+    This cout statement displays the string “Ruth” instead of the array’s address. This is because the stream insertion operator is designed to 
+    behave differently when it receives the address of a char array. When the stream insertion operator receives the address of a char array, it 
+    assumes a C-string is stored at that address, and sends the C-string to cout.
+
+*** Do not pass the name of a char array to cout if the char array does not contain a null-terminated C-string. If you do, cout will display 
+    all the characters in memory, starting at the array’s address, until it encounters a null terminator.
+
+--------------------------------------------------------- COMPARING ARRAYS --------------------------------------------------------------------------
+
+1.  You cannot use the == operator with the names of two arrays to determine whether the arrays are equal. For example, the following code appears to 
+    compare two arrays, but in reality does not.
+    
+        int firstArray[] = { 5, 10, 15, 20, 25 };
+        int secondArray[] = { 5, 10, 15, 20, 25 };
+        if (firstArray == secondArray)                         // This is a mistake.
+            cout << "The arrays are the same.\n";
+        else
+            cout << "The arrays are not the same.\n";
+    
+    When you use the == operator with array names, the operator compares the beginning memory addresses of the arrays, not the contents of the arrays. 
+    The two array names in this code will obviously have different memory addresses. Therefore, the result of the expression firstArray == secondArray 
+    is false and the code reports that the arrays are not the same.
+
+2.  To compare the contents of two arrays, you must compare the elements of the two arrays. For example, look at the following code.
+
+            const int SIZE = 5;
+            int firstArray[SIZE] = { 5, 10, 15, 20, 25 };
+            int secondArray[SIZE] = { 5, 10, 15, 20, 25 };
+            bool arraysEqual = true;                           // Flag variable
+            int count = 0;                                    // Loop counter variable
+
+            // Determine whether the elements contain the same data.
+            while (arraysEqual && count < SIZE)
+                {
+                    if (firstArray[count] != secondArray[count])
+                        arraysEqual = false;
+                    count++;
+                }
+            if (arraysEqual)
+                cout << "The arrays are equal.\n";
+            else
+                cout << "The arrays are not equal.\n";
