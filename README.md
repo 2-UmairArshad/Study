@@ -22,15 +22,6 @@
   <br />
 </div>
 
-<details>
-  <summary><b>📖 Table of Contents</b></summary>
-  <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#repository-structure">Repository Structure</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
-
 ---
 
 ## 🧐 About The Project
