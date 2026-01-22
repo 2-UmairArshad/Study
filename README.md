@@ -24,7 +24,7 @@
 
 ---
 
-## 🧐 About The Project
+## 🧐 About This Repository 
 
 This repository serves as a centralized archive for my academic progression. It documents everything I have learned and implemented during my undergraduate studies. 
 
